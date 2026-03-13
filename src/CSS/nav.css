@@ -1,0 +1,23 @@
+.list-item{
+list-style-type: none;
+display: inline-block;
+background-color:transparent;
+padding: 20px;
+color: white;
+font-weight: 500;
+
+}
+
+.ul-list{
+    font-size: "20px";
+}
+
+.list-item:hover{
+    background-color: #000000;
+    cursor: pointer;
+}
+
+.main-div{
+    width: 100%;
+    background-color: #282A35;
+}
