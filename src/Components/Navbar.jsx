@@ -1,60 +1,47 @@
-import React , {useState} from 'react'
+import React, { useState } from 'react'
 import '../CSS/nav.css'
 
 
-function Navbar(){
+function Navbar(props) {   // Recieved Props as nc
 
-    const [links , setLinks ] = useState([
-        {route  : "Home" , isActive   :true},
-        {route  : "About" , isActive   :false},
-        {route  : "Contact" , isActive   :false}
+   const {nc , name , email, mobile , isLight  =  true} = props;
+
+    const [links, setLinks] = useState([
+        { route: "Home", isActive: true },
+        { route: "About", isActive: false },
+        { route: "Contact", isActive: false }
     ])
 
 
-// const [activeIndex , setActiveIndex]=  useState(null)
+    const handleclick = (index) => {
+        let temp = [...links]
+        temp.forEach((el) => el.isActive = false)
+        temp[index].isActive = true;
+        setLinks([...temp])
 
+    }
 
-// const handleclick  = (index) =>{
-//     let elementsArray  =  document.getElementsByClassName('list-item');
-//     for(const el of elementsArray)
-//     {
-//         el.style.backgroundColor =  'transparent'
-//     }
-//     elementsArray[index].style.backgroundColor =  '#04AA6D'
-    
-// }  
+    return (
+        <>
 
+            <div className='main-div'>
+                <ul className='ul-list'>
+                    {links.map((el, index) => (
+                        <li key={`list-${index}`} style={{ backgroundColor: el.isActive ? "#04AA6D" : "transparent" }} className='list-item' onClick={() => handleclick(index)} >{el.route}</li>
+                    ))}
+                </ul>
+            </div>
 
-const handleclick = (index) =>{
-    let temp =  [...links]
-    temp.forEach((el)=>  el.isActive = false   )
-    temp[index].isActive =  true;
-    setLinks([...temp])
+            <div style={{width : "100px" , height :"100px" ,border : "1px solid black" , backgroundColor : nc}}>
+                <h1>From Navbar</h1>
+            </div>
 
-}
+            <h1>{name} {email}  {mobile}</h1>
 
-return(
-    <>
-    {/* JSX Code Will Come HERE */}
+            {isLight ? " Light Aviable " : "Nt Avl"}
+        </>
 
-
-     {/* <div className='main-div'>
-        <ul className='ul-list'>
-          <li className='list-item' onClick={()=>handleclick(0)} >Home</li>
-          <li className='list-item' onClick={()=>handleclick(1)}>About</li>
-          <li className='list-item' onClick={()=>handleclick(2)}>Contact</li>
-        </ul>
-    </div> */}
-     <div className='main-div'>
-        <ul className='ul-list'>
-            {links.map((el,index)=>(
-          <li key={`list-${index}`}  style={{backgroundColor : el.isActive ?  "#04AA6D"  : "transparent"  }} className='list-item' onClick={()=>handleclick(index)} >{el.route}</li>
-            ))}
-        </ul>
-    </div>
-    </>
-
-)
+    )
 
 
 }
