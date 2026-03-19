@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../CSS/nav.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 
 function Navbar(props) {   // Recieved Props as nc
@@ -10,7 +10,7 @@ function Navbar(props) {   // Recieved Props as nc
     const { nc, name, email, mobile, isLight = true } = props;
 
     const [links, setLinks] = useState([
-        { route: "Home", link: "/home", isActive: true },
+        { route: "Home", link: "/", isActive: true },
         { route: "About", link: '/about', isActive: false },
         { route: "Contact", link: '/contact', isActive: false }
     ])
@@ -38,6 +38,7 @@ function Navbar(props) {   // Recieved Props as nc
                     ))}
                 </ul>
             </div>
+            <Outlet />
         </>
 
     )
