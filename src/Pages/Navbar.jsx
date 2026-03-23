@@ -12,7 +12,8 @@ function Navbar(props) {   // Recieved Props as nc
     const [links, setLinks] = useState([
         { route: "Home", link: "/", isActive: true },
         { route: "About", link: '/about', isActive: false },
-        { route: "Contact", link: '/contact', isActive: false }
+        { route: "Contact", link: '/contact', isActive: false },
+        { route: "Reducer", link: '/reducer', isActive: false }
     ])
 
 

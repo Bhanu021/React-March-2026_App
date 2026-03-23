@@ -1,0 +1,16 @@
+.tb-div{
+    
+    margin-top: 100px;
+}
+
+table{
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+
+tr,td,th{
+    border: 1px solid black;
+}

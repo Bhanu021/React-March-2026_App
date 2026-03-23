@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from '../Pages/Navbar';
-import Home from '../Pages/Home';
+import MyHome from '../Pages/Home';
 import Contact from '../Pages/Contact';
 import About from '../Pages/About';
 import PageNotFound from '../Pages/PageNotFound';
@@ -12,8 +12,8 @@ function Router() {
         <>
         <Navbar/>
         <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<MyHome/>} />
+            <Route path="/home" element={<MyHome />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             {/** To Stay and Show Page Not Found Page */}

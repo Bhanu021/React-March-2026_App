@@ -3,6 +3,7 @@ import About from "../Pages/About"
 import Contact from "../Pages/Contact"
 import { Navigate } from "react-router-dom"
 import Navbar from "../Pages/Navbar"
+import MyReducer from "../Pages/UseReducer"
 
 
 const RouterV6 = () => {
@@ -28,6 +29,7 @@ const RouterV6 = () => {
                 { path: "/", element: <Home /> },
                 { path: "/about", element: <About /> },
                 { path: "/contact", element: <Contact /> },
+                { path: "/reducer", element: <MyReducer /> },
             ]
             
         },
