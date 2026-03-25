@@ -1,0 +1,43 @@
+.main{
+    border: 1px solid black;
+    padding: 15px;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 150px;
+}
+
+.inpt-fm{
+    width: 90%;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+
+.btn-fm{
+    padding: 15px 85px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.btn-fm:hover{
+    background-color: white;
+    color: green;
+    font-weight: bold;
+    border: 2px solid green;
+}
+
+.select-fm{
+    padding: 15px;
+    width: 94%;
+    border-radius: 5px;
+}
+
+
