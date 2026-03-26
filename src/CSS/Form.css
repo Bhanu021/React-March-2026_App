@@ -36,8 +36,20 @@
 
 .select-fm{
     padding: 15px;
-    width: 94%;
+    width: 93%;
     border-radius: 5px;
+}
+
+label{
+ font-size: 15px;
+ font-weight: 700;
+ padding: 20px;
+}
+
+form{
+    border: 1px solid black;
+    width: 85%;
+    padding: 40px;
 }
 
 

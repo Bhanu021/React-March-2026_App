@@ -1,5 +1,6 @@
 import { useState } from "react"
 import '../CSS/Form.css'
+import { HandleCheckBoxArray } from "../Utils/FormUtilities"
 
 
 
@@ -13,13 +14,24 @@ const FormsComponent = () => {
         email: "",
         mobile: "",
         course: "",
-        gender : ""
+        gender : "Male",
+        lang : [],
+        fileData  : {},
+        tempFileData : ""
 
     })
 
+    
+
 
     const handleFormValues = (e) => {
-        setFormValues({ ...formValues, [e.target.name]: e.target.value })
+        if(e.target.name == 'lang'){
+            let processed  =  HandleCheckBoxArray(e.target.value , e.target.checked , formValues.lang)
+              setFormValues({...formValues , [e.target.name] : [...processed]})
+        }
+        else{
+            setFormValues({ ...formValues, [e.target.name]: e.target.value })
+        }
     }
 
 
@@ -52,11 +64,16 @@ const FormsComponent = () => {
     // }
 
     const hanldeSubmit = () => {
-
         console.table(formValues)
-
     }
 
+
+
+    const fileHandler = (e) =>{       
+        let url  =  URL.createObjectURL(e.target.files[0])
+        console.log(url)
+        setFormValues({...formValues ,  ['fileData'] : e.target.files[0], ['tempFileData'] : url })
+    }
 
 
 
@@ -78,12 +95,30 @@ const FormsComponent = () => {
                     <option value='mongo'>Mongo</option>
                     <option value='nodejs'>Node Js</option>
                 </select>
-                    <label>Select Gender</label>
                 <form>
+                    <label className="lbl-fm">Select Gender</label>
                     <label htmlFor='male' >Male</label>
-                    <input onChange={handleFormValues} type="radio" id="gender" name="gender" placeholder="Male" value='Male' />
+                    <input onChange={handleFormValues} type="radio" id="gender" name="gender" placeholder="Male" value='Male' checked={formValues.gender == "Male"} />
                     <label htmlFor='female'>Female</label>
-                    <input onChange={handleFormValues} type="radio" id="gender" name="gender" placeholder="Female" value='Female' />
+                    <input onChange={handleFormValues} type="radio" id="gender" name="gender" placeholder="Female" value='Female' checked={formValues.gender == "Female"} />
+                </form>
+                <form>
+                    <label className="lbl-fm">Select Languages</label>
+                    <label htmlFor='hindi' >Hindi</label>
+                    <input onChange={handleFormValues} type="checkbox" id="lang" name="lang" placeholder="hindi" value='hindi'  />
+                    <label htmlFor='english'>English</label>
+                    <input onChange={handleFormValues} type="checkbox" id="lang" name="lang" placeholder="english" value='english'  />
+                    <label htmlFor='urdu'>Urdu</label>
+                    <input onChange={handleFormValues} type="checkbox" id="lang" name="lang" placeholder="urdu" value='urdu'  />
+                    <label htmlFor='french'>French</label>
+                    <input onChange={handleFormValues} type="checkbox" id="lang" name="lang" placeholder="french" value='french'  />
+                    <label htmlFor='british'>British</label>
+                    <input onChange={handleFormValues} type="checkbox" id="lang" name="lang" placeholder="british" value='british'  />
+                </form>
+                <form>
+                    <input htmlFor='fileInput' onChange={fileHandler} type="file"  style={{display : "none"}}   />
+
+                    <img id="fileInput"  src={formValues.tempFileData} width="100px" height="100px" />
                 </form>
                     <button className="btn-fm" onClick={hanldeSubmit}>Submit</button>
             </div>
