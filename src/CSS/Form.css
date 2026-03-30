@@ -17,6 +17,14 @@
     padding: 15px;
 }
 
+.show-img{
+    padding: 20px;
+}
+
+input:focus{
+    border: 10px solid green;
+}
+
 
 .btn-fm{
     padding: 15px 85px;
@@ -50,6 +58,14 @@ form{
     border: 1px solid black;
     width: 85%;
     padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+img{
+    cursor: pointer;
 }
 
 

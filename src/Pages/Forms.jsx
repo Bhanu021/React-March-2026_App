@@ -1,11 +1,20 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import '../CSS/Form.css'
 import { HandleCheckBoxArray } from "../Utils/FormUtilities"
+const MultiUploadLogo  =  require('../Assets/Multiple-download-Logo.png')
+
 
 
 
 
 const FormsComponent = () => {
+
+    const emailRef  = useRef()
+
+    const renderCount  =  useRef(0)
+    const fileInputRef  =  useRef(null)
+ 
+
 
 
     const [formValues, setFormValues] = useState({
@@ -16,10 +25,19 @@ const FormsComponent = () => {
         course: "",
         gender : "Male",
         lang : [],
-        fileData  : {},
-        tempFileData : ""
+        fileData  : [],
+        tempFileData : []
 
     })
+
+    useEffect(()=>{
+        // document.getElementById('email-box').focus()
+        emailRef.current.focus()
+       
+        
+    })
+
+
 
     
 
@@ -63,16 +81,25 @@ const FormsComponent = () => {
 
     // }
 
-    const hanldeSubmit = () => {
+    const hanldeSubmit = (e) => {
+        e.preventDefault()
         console.table(formValues)
     }
 
 
 
-    const fileHandler = (e) =>{       
-        let url  =  URL.createObjectURL(e.target.files[0])
-        console.log(url)
-        setFormValues({...formValues ,  ['fileData'] : e.target.files[0], ['tempFileData'] : url })
+    const fileHandler = (e) =>{    
+        console.log(e.target.files)
+        let fileData  =  []
+        let tempFileData  = []
+        for(const f of e.target.files)
+        {
+            fileData.push(f);
+            tempFileData.push(URL.createObjectURL(f))
+        }
+        console.table(fileData)
+        console.table(tempFileData)
+        setFormValues({...formValues ,  ['fileData'] :[...fileData], ['tempFileData'] : [...tempFileData]})
     }
 
 
@@ -81,10 +108,12 @@ const FormsComponent = () => {
     return (
 
         <>
+            <h1>Page Refresh count :  {renderCount.current}</h1>
+            <form>
 
             <div className="main">
                 <input className="inpt-fm" name="name" placeholder="Enter Your Name" value={formValues.name} onChange={handleFormValues} />
-                <input className="inpt-fm" name="email" placeholder="Enter Your Email" value={formValues.email} onChange={handleFormValues} />
+                <input id="email-box"  ref={emailRef} className="inpt-fm" name="email" placeholder="Enter Your Email" value={formValues.email} onChange={handleFormValues} />
                 <input className="inpt-fm" name="mobile" placeholder="Enter Your Mobile" value={formValues.mobile} onChange={handleFormValues} />
                 <select defaultValue={formValues.course} name="course" onChange={handleFormValues} className="select-fm">
                     <option className="opt-fm">Select course</option>
@@ -116,12 +145,20 @@ const FormsComponent = () => {
                     <input onChange={handleFormValues} type="checkbox" id="lang" name="lang" placeholder="british" value='british'  />
                 </form>
                 <form>
-                    <input htmlFor='fileInput' onChange={fileHandler} type="file"  style={{display : "none"}}   />
-
-                    <img id="fileInput"  src={formValues.tempFileData} width="100px" height="100px" />
+                    <input ref={fileInputRef}  htmlFor='fileInput' multiple accept="image/png image/jpeg"  onChange={fileHandler} type="file"  style={{display : "none"}}   />
+                    <label>Upload Your Images</label>
+                    <img  onClick={()=>{fileInputRef.current.click()}}   src={MultiUploadLogo} width="100px" height="100px" />
                 </form>
-                    <button className="btn-fm" onClick={hanldeSubmit}>Submit</button>
+                {Array.isArray(formValues.tempFileData ) && formValues.tempFileData.length > 0 ?
+                <form>
+                    {formValues.tempFileData.map((el , i)=>(
+                        <img key={`show-img-${i}`} className="show-img" width="100px" height='100px'  src={el} />
+                    ))}
+                </form> : <></>}
+                    <button className="btn-fm"  onClick={hanldeSubmit}>Submit</button>
+                {/* <input className="btn-fm" type="submit" placeholder="Submit" value='Submit' /> */}
             </div>
+            </form>
 
 
 

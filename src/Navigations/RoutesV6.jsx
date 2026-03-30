@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom"
 import Navbar from "../Pages/Navbar"
 import MyReducer from "../Pages/UseReducer"
 import FormsComponent from "../Pages/Forms"
+import HTTPComponent from "../Pages/HTTP"
 
 
 const RouterV6 = () => {
@@ -32,6 +33,7 @@ const RouterV6 = () => {
                 { path: "/contact", element: <Contact /> },
                 { path: "/reducer", element: <MyReducer /> },
                 { path: "/forms", element: <FormsComponent /> },
+                { path: "/http", element: <HTTPComponent /> },
             ]
             
         },

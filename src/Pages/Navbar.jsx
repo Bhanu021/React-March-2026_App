@@ -14,7 +14,8 @@ function Navbar(props) {   // Recieved Props as nc
         { route: "About", link: '/about', isActive: false },
         { route: "Contact", link: '/contact', isActive: false },
         { route: "Reducer", link: '/reducer', isActive: false },
-        { route: "Forms", link: '/forms', isActive: false }
+        { route: "Forms", link: '/forms', isActive: false },
+        { route: "HTTP", link: '/http', isActive: false },
     ])
 
 
