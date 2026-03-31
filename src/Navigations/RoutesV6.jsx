@@ -1,3 +1,4 @@
+import React from "react"
 import Home from "../Pages/Home"
 import About from "../Pages/About"
 import Contact from "../Pages/Contact"
@@ -6,6 +7,9 @@ import Navbar from "../Pages/Navbar"
 import MyReducer from "../Pages/UseReducer"
 import FormsComponent from "../Pages/Forms"
 import HTTPComponent from "../Pages/HTTP"
+
+
+const HOCPage = React.lazy(() => import("../Pages/HOC"));
 
 
 const RouterV6 = () => {
@@ -34,6 +38,7 @@ const RouterV6 = () => {
                 { path: "/reducer", element: <MyReducer /> },
                 { path: "/forms", element: <FormsComponent /> },
                 { path: "/http", element: <HTTPComponent /> },
+                { path: "/hoc", element: <HOCPage /> },
             ]
             
         },

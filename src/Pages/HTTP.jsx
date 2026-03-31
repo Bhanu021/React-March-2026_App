@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Lottie from "lottie-react"
 import NoDataFound from '../Assets/No-Data-Found.json'
 import axios from "axios";
-
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 const options = {
     animationData: NoDataFound,
@@ -15,6 +15,7 @@ function HTTPComponent() {
     const [count, setcount] = useState(0)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
+
 
     // console.log(data)
 
@@ -41,27 +42,68 @@ function HTTPComponent() {
     // By Axios
 
 
-    useEffect(()=>{
-        axios.get('https://jsonplaceholder.typicode.com/to').then((res)=>{
-            console.log(res.data)
-            setData(res.data)
-            setLoading(false)
-        }).catch((err)=>{
-            setLoading(false)
-            setData([])
-            console.log(err)
+    const FetchData = async () => {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/todos')
+        return response.data
 
-        })
-    },[loading])
+    }
+
+
+    // useEffect(()=>{
+    //     axios.get('https://jsonplaceholder.typicode.com/to').then((res)=>{
+    //         console.log(res.data)
+    //         setData(res.data)
+    //         setLoading(false)
+    //     }).catch((err)=>{
+    //         setLoading(false)
+    //         setData([])
+    //         console.log(err)
+
+    //     })
+    // },[loading])
+
+
+    // const mutation =  useMutation({
+    //     mutationFn : FetchData,
+    //     mutationKey : ['FetchData'],
+    //     retry :  3,
+    //     onSuccess : (res) =>{
+    //         setData(res)
+    //         setLoading(false)
+    //     },
+    //     onError : () =>{
+    //         setData([])
+    //         setLoading(false)
+    //     }
+    // })  
+
+    // React.useEffect(()=>{
+    //     mutation.mutate()
+
+    // },[])
+
+
+    const { data : myData , isLoading  } = useQuery({
+        queryKey: ['FetchData'],
+        queryFn: FetchData,
+        refetchOnWindowFocus : true,
+        refetchOnMount :  true,
+       refetchOnReconnect  : true
+    }); 
+
+
+
+    console.log(myData)
+
 
 
     return (
 
         <>
 
-            {loading ?
+            {isLoading ?
 
-                <div className="container"  style={{display :"flex" , justifyContent : "center" ,  alignItems : "center" , marginTop : "10%"}}>
+                <div className="container" style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "10%" }}>
                     <Lottie style={{ width: 200, height: 200 }} animationData={NoDataFound} loop={true} />
 
                 </div>
@@ -80,7 +122,7 @@ function HTTPComponent() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((el, i) => (
+                        {myData.map((el, i) => (
 
                             <tr key={`user-item-${i}`}>
                                 <th scope="row">{i + 1}</th>

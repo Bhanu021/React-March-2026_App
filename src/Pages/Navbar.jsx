@@ -16,6 +16,7 @@ function Navbar(props) {   // Recieved Props as nc
         { route: "Reducer", link: '/reducer', isActive: false },
         { route: "Forms", link: '/forms', isActive: false },
         { route: "HTTP", link: '/http', isActive: false },
+        { route: "HOC", link: '/hoc', isActive: false },
     ])
 
 
