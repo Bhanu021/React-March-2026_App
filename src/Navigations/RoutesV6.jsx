@@ -10,6 +10,7 @@ import HTTPComponent from "../Pages/HTTP"
 
 
 const HOCPage = React.lazy(() => import("../Pages/HOC"));
+const RTKPage = React.lazy(()=> import('../Pages/RTK'))
 
 
 const RouterV6 = () => {
@@ -39,6 +40,7 @@ const RouterV6 = () => {
                 { path: "/forms", element: <FormsComponent /> },
                 { path: "/http", element: <HTTPComponent /> },
                 { path: "/hoc", element: <HOCPage /> },
+                { path: "/rtk", element: <RTKPage /> },
             ]
             
         },
