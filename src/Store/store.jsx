@@ -1,16 +1,22 @@
-import { combineReducers, combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from 'redux-persist/lib/storage/session'
 import {persistReducer , persistStore , FLUSH , REHYDRATE , PAUSE , PERSIST , PURGE , REGISTER} from 'redux-persist'
+import DemoReducer from "../Redux/Slices/Demo";
 
 
 const persistConfig = {
-    key  : "root",
-    whitelist : [],
+    key  : "mystore",
+    whitelist : ['demoReducer'],
     storage,
 }
 
 
-const combine_reducers =  combineReducers({})
+const combine_reducers =  combineReducers({
+    demoReducer : DemoReducer 
+
+})
+
+
 
 
 
