@@ -11,22 +11,10 @@ export default function RTK(){
 
 
 
-  const count = useSelector((state)=> state?.demoReducer?.count )
+    const count = useSelector((state)=> state?.demoReducer?.count || 0 )
 
 
-    useEffect(()=>{
 
-        // if(!sessionStorage.getItem('count'))
-        // {
-        //     sessionStorage.setItem("count" , 0)
-        // }
-
-        if(!count)
-        {
-            dispatch(setCount(0))
-        }
-
-    },[])
 
 
     // const [count ,setCount] = useState(Number(sessionStorage.getItem('count')))

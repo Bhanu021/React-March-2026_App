@@ -12,11 +12,11 @@ import FAQ from "../Pages/FAQ"
 
 
 const HOCPage = React.lazy(() => import("../Pages/HOC"));
-const RTKPage = React.lazy(() => import('../Pages/RTK'))
-const DynamicList = React.lazy(() => import('../Pages/DynamicList'))
+const RTKPage = React.lazy(()=> import('../Pages/RTK'))
+const DynamicList  =  React.lazy(()=> import('../Pages/DynamicList'))
 
 
-const RouterV6 = () => {
+const AuthenticatedRouterV6 = () => {
 
 
     // Routes Without Child
@@ -33,11 +33,21 @@ const RouterV6 = () => {
     // Routes with Child
 
     return [
+        {
+            path: "/", element: <Navbar />, children: [
 
-
-        { path: "/", element: <Login /> },
-        { path: "/faq", element: <FAQ /> },
-        { path: "/login", element: <Login /> },
+                { path: "/", element: <Home /> },
+                { path: "/about", element: <About /> },
+                { path: "/contact", element: <Contact /> },
+                { path: "/reducer", element: <MyReducer /> },
+                { path: "/forms", element: <FormsComponent /> },
+                { path: "/http", element: <HTTPComponent /> },
+                { path: "/hoc", element: <HOCPage /> },
+                { path: "/rtk", element: <RTKPage /> },
+                { path: "/dynamic", element: <DynamicList /> },
+            ]
+            
+        },
         { path: "*", element: <Navigate to='/' replace /> }
 
     ]
@@ -49,4 +59,4 @@ const RouterV6 = () => {
 }
 
 
-export default RouterV6
+export default AuthenticatedRouterV6 
