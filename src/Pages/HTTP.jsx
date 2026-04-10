@@ -3,6 +3,7 @@ import Lottie from "lottie-react"
 import NoDataFound from '../Assets/No-Data-Found.json'
 import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import useApiCall from "../hooks/useApiCall";
 
 const options = {
     animationData: NoDataFound,
@@ -16,6 +17,10 @@ function HTTPComponent() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
 
+    const {data :  appData , isLoading : load , isError}  =  useApiCall('https://jsonplaceholder.typicode.com/todos' , 'get')
+    console.log(appData)
+    console.log(load)
+    console.log(isError)
 
     // console.log(data)
 
@@ -93,7 +98,7 @@ function HTTPComponent() {
 
 
 
-    console.log(myData)
+    // console.log(myData)
 
 
 
